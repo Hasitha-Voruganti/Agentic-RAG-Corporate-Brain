@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.so
+.env
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+
+# Models — too large for GitHub
+*.bin
+*.pt
+*.pth
+*.onnx
+~/.cache/huggingface/
+
+# Uploads — user data should not be committed
+backend/uploads/
+uploads/
+
+# Node
+node_modules/
+frontend/dist/
+frontend/.vite/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Docker volumes
+docker/volumes/
+
+# Database files
+*.db
+*.sqlite
+
+# Temp files
+*.tmp
+*.temp
+check_qdrant.py
+check_db.py

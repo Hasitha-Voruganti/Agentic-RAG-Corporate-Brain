@@ -1,0 +1,83 @@
+version: "3.9"
+
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: corporate_qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    restart: unless-stopped
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.0
+    container_name: corporate_es
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+      - "9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16
+    container_name: corporate_pg
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-brain}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-brain_secret}
+      POSTGRES_DB: ${POSTGRES_DB:-corporate_brain}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: corporate_redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: corporate_backend
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - DATABASE_URL=postgresql://brain:brain_secret@postgres:5432/corporate_brain
+      - QDRANT_URL=http://qdrant:6333
+      - ES_URL=http://elasticsearch:9200
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=${JWT_SECRET:-supersecretkey}
+    depends_on:
+      - qdrant
+      - elasticsearch
+      - postgres
+      - redis
+    volumes:
+      - ./uploads:/app/uploads
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: corporate_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  qdrant_data:
+  es_data:
+  pg_data:
