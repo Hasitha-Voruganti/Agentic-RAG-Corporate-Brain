@@ -142,3 +142,29 @@ TOP_K_KEYWORD=20
 TOP_K_RERANK=8
 TRANSFORMERS_OFFLINE=1
 HF_DATASETS_OFFLINE=1
+
+## Screenshots
+
+### Login Screen
+
+![Login](screenshots/login.png)
+
+### Query Interface — Answer with Source Citation
+
+![Query](screenshots/query_answer.png)
+
+### Documents Page — All 8 Documents
+
+![Documents](screenshots/documents.png)
+
+### Access Control — RBAC Matrix
+
+![RBAC](screenshots/rbac.png)
+
+### Query History
+
+![History](screenshots/query_history.png)
+
+### Not Found Response — Anti-Hallucination
+
+![Not Found](screenshots/not_found.png)
