@@ -225,36 +225,7 @@ API documentation available at `http://localhost:8000/docs`
 | fin_user | Finance@123 | Finance | Finance Policy + General docs |
 | employee | Employee@123 | General | General docs only |
 
-### Sample Queries by Role
 
-**Admin only:**
-```
-What is the annual cost of the AWS Enterprise license?
-What was TechCorp revenue in FY2023?
-```
-
-**HR user:**
-```
-What is the maternity leave entitlement for female employees?
-What is the salary increment for exceptional performers?
-```
-
-**Finance user:**
-```
-What is the procurement approval limit for a director?
-What is the hotel reimbursement limit for senior employees?
-```
-
-**All roles:**
-```
-What is the password expiry policy?
-What are the working hours at TechCorp?
-```
-
-**Tests anti-hallucination (no answer exists):**
-```
-What is the company refund policy for customers?
-```
 
 ---
 
