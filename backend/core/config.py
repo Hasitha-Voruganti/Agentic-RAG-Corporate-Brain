@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     # Embeddings — local HuggingFace (free, runs on your machine)
     embedding_model: str = "all-MiniLM-L6-v2"
     embedding_dim: int = 384
-
+    
     # Databases
     database_url: str = "postgresql+asyncpg://brain:brain_secret@localhost:5432/corporate_brain"
     qdrant_url: str = "http://localhost:6333"

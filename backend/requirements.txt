@@ -12,7 +12,7 @@ alembic==1.13.1
 # Vector DB
 qdrant-client==1.9.1
 
-# Search
+# Search remove the # for below line while running project
 elasticsearch==8.13.0
 
 # LLM & Embeddings

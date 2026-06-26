@@ -51,7 +51,8 @@ docker/volumes/
 # Database files
 *.db
 *.sqlite
-
+# Salesforce
+.sfdx/
 # Temp files
 *.tmp
 *.temp
